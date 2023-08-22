@@ -109,9 +109,7 @@ class WordApp():
             else:
                 print("Are you kidding me?\n")
                 break
-            
-        
-        
+
     def print_words(self):
         print(self.words)
 
