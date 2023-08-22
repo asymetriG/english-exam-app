@@ -21,7 +21,7 @@ class WordApp():
         
     def merge(self, dict1, dict2):
         return(dict2.update(dict1))
-    
+
     def set_results(self,word):
         counter = 0
         for ans in self.sequence:
