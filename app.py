@@ -6,7 +6,10 @@ class WordApp():
     def __init__(self):
         
         self.words = {}
-        self.refresh_words()
+        self.method = None
+        print("\nWelcome to our exam!\nThese exam will last approximately 20 minute. There will be 30 questions in a row.To exit exam press ctrl+c.")
+        self.method = int(input("For english to turkish please write 1. For turkish to english please write 2. Other numbers will be english to turkish.\n"))
+        self.refresh_words(self.method)
         self.sequence = []
         self.correct_ans_index = 0
         self.user_index = 0
@@ -16,7 +19,7 @@ class WordApp():
         self.asked_quests = []
         self.asked_quests_index = 0
         
-        print("\nWelcome to our exam!\nThese exam will last approximately 20 minute. There will be 30 questions in a row.To exit exam press ctrl+c.")
+        
         self.exam()
         
     def merge(self, dict1, dict2):
@@ -73,16 +76,22 @@ class WordApp():
                 return 0
         
 
-    def refresh_words(self):
+    def refresh_words(self,method):
         
         temp = []
         
         with open("current_words.txt","r",encoding="utf-8") as f:
             data = f.readlines()
+            
+        if (method==1 or method<0 or method>2):  
+            for i in data:
+                temp = i.strip().split("=")
+                self.words[temp[0].strip()] = temp[1].strip()
+        else:
+            for i in data:
+                temp = i.strip().split("=")
+                self.words[temp[1].strip()] = temp[0].strip()
         
-        for i in data:
-            temp = i.strip().split("=")
-            self.words[temp[0].strip()] = temp[1].strip()
             
     def exam(self):
         
